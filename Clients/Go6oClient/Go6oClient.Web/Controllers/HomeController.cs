@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Go6oClient.Web.Models;
 using Microsoft.AspNetCore.Mvc;
-using Go6oClient.Api.Models;
+using System.Diagnostics;
 
-namespace Go6oClient.Api.Controllers
+namespace Go6oClient.Web.Controllers
 {
     public class HomeController : Controller
     {

@@ -1,6 +1,4 @@
-using System;
-
-namespace Go6oClient.Api.Models
+namespace Go6oClient.Web.Models
 {
     public class ErrorViewModel
     {

@@ -1,4 +1,4 @@
-﻿namespace Go6oClient.Api.Models
+﻿namespace Go6oClient.Web.Models
 {
     public class UiControl
     {
