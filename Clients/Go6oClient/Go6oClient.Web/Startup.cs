@@ -1,3 +1,4 @@
+using Amazon.SQS;
 using Go6oClient.Web.ABConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -21,7 +22,13 @@ namespace Go6oClient.Web
         {
             services.AddControllersWithViews();
 
+            // AWS Configuration
+            var awsOptions = Configuration.GetAWSOptions();
+            services.AddDefaultAWSOptions(awsOptions);
+            services.AddAWSService<IAmazonSQS>();
+
             services.AddSingleton<IABConnector>(new ABConnector(string.Empty));
+            services.AddSingleton<IReportConnector>(sp => new ReportConnector(sp.GetService<IAmazonSQS>()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

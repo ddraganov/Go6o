@@ -29,22 +29,22 @@ namespace Go6oClient.Web.Controllers
             return View(control);
         }
 
-        public IActionResult Sofia()
+        public IActionResult Sofia(UiControl control)
         {
             return View();
         }
 
-        public IActionResult Plovdiv()
+        public IActionResult Plovdiv(UiControl control)
         {
             return View();
         }
 
-        public IActionResult Varna()
+        public IActionResult Varna(UiControl control)
         {
             return View();
         }
 
-        public IActionResult Burgas()
+        public IActionResult Burgas(UiControl control)
         {
             return View();
         }
