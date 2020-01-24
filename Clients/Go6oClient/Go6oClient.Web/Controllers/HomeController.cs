@@ -51,6 +51,9 @@ namespace Go6oClient.Web.Controllers
                 {
                     var noSeaReport = new Report("NoSeaSide", control.NoSeaSide == "A" ? 0 : 1, 1);
                     reportConnector.Send(noSeaReport);
+
+                    var seaReport = new Report("SeaSide", control.NoSeaSide == "A" ? 0 : 1, 0);
+                    reportConnector.Send(seaReport);
                 }
             }
 
@@ -77,6 +80,9 @@ namespace Go6oClient.Web.Controllers
                 {
                     var noSeaReport = new Report("NoSeaSide", control.NoSeaSide == "A" ? 0 : 1, 1);
                     reportConnector.Send(noSeaReport);
+
+                    var seaReport = new Report("SeaSide", control.NoSeaSide == "A" ? 0 : 1, 0);
+                    reportConnector.Send(seaReport);
                 }
             }
 
@@ -103,6 +109,9 @@ namespace Go6oClient.Web.Controllers
                 {
                     var seaReport = new Report("SeaSide", control.SeaSide == "A" ? 0 : 1, 1);
                     reportConnector.Send(seaReport);
+
+                    var nonSeaReport = new Report("NoSeaSide", control.NoSeaSide == "A" ? 0 : 1, 0);
+                    reportConnector.Send(nonSeaReport);
                 }
             }
 
@@ -130,6 +139,9 @@ namespace Go6oClient.Web.Controllers
             {
                 var seaReport = new Report("SeaSide", control.SeaSide == "A" ? 0 : 1, 1);
                 reportConnector.Send(seaReport);
+
+                var nonSeaReport = new Report("NoSeaSide", control.NoSeaSide == "A" ? 0 : 1, 0);
+                reportConnector.Send(nonSeaReport);
             }
 
             return View();
