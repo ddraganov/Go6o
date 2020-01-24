@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Go6o.Core.Application.TestEvaluators;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -19,7 +19,9 @@ namespace Go6o.Api.Controllers
         [Route("{testId}")]
         public string Get([FromRoute]string testId)
         {
-            return new Random().Next() % 2 == 0 ? "A" : "B";
+            var evaluator = ABTestEvaluatorFactory.CreateInstance(testId);
+
+            return evaluator.GetValue();
         }
     }
 }
