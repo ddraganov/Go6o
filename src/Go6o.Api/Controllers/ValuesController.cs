@@ -1,5 +1,4 @@
-﻿using System;
-using Go6o.Core.Application.TestEvaluators;
+﻿using Go6o.Core.Application.TestEvaluators;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
