@@ -23,13 +23,13 @@ namespace Go6o.AbTesting
 
         public override string GetValue()
         {
-            double aWeight = Math.Min(1.0d, _aStartWeight + (_count / _step) * _aToBRatioStep);
+            double aWeight = Math.Min(1.0d, AStartWeight + (_count / _step) * _aToBRatioStep);
 
             var random = new Random();
             if (random.NextDouble() < aWeight)
-                return _a;
+                return A;
             else
-                return _b;
+                return B;
         }
 
         public override void Handle(SimpleCountingAbTestEvent @event)
