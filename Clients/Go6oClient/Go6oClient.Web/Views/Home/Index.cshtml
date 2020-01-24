@@ -8,7 +8,7 @@
             <div class="card-body">
                 <h5 class="card-title">Sofia</h5>
                 <p class="card-text">Capital and largest city of Bulgaria. The city is at the foot of Vitosha Mountain</p>
-                <a asp-area="" asp-controller="Home" asp-action="Sofia" class="btn btn-primary">See more</a>
+                @Html.ActionLink("See more", "Sofia", "Home", new { burgas = Model.Burgas, varna = Model.Varna, sofia = Model.Sofia, plovdiv = Model.Sofia, seaside = Model.SeaSide, noseaside = Model.NoSeaSide }, new { @class = "btn btn-primary" })
             </div>
         </div>
     }
@@ -19,7 +19,7 @@
             <div class="card-body">
                 <h5 class="card-title">Plovdiv</h5>
                 <p class="card-text">The second-largest city in Bulgaria and the culture capital of Bulgaria</p>
-                <a asp-area="" asp-controller="Home" asp-action="Plovdiv" class="btn btn-primary">See more</a>
+                @Html.ActionLink("See more", "Plovdiv", "Home", new { burgas = Model.Burgas, varna = Model.Varna, sofia = Model.Sofia, plovdiv = Model.Sofia, seaside = Model.SeaSide, noseaside = Model.NoSeaSide }, new { @class = "btn btn-primary" })
             </div>
         </div>
     }
@@ -31,7 +31,7 @@
             <div class="card-body">
                 <h5 class="card-title">Varna</h5>
                 <p class="card-text">The third largest city in Bulgaria and the largest city and seaside resort on the Bulgarian Black Sea Coast</p>
-                <a asp-area="" asp-controller="Home" asp-action="Varna" class="btn btn-primary">See more</a>
+                @Html.ActionLink("See more", "Varna", "Home", new { burgas = Model.Burgas, varna = Model.Varna, sofia = Model.Sofia, plovdiv = Model.Sofia, seaside = Model.SeaSide, noseaside = Model.NoSeaSide }, new { @class = "btn btn-primary" })
             </div>
         </div>
     }
@@ -42,8 +42,15 @@
             <div class="card-body">
                 <h5 class="card-title">Burgas</h5>
                 <p class="card-text">The second largest city on the Bulgarian Black Sea Coast and the fourth-largest in Bulgaria</p>
-                <a asp-area="" asp-controller="Home" asp-action="Burgas" class="btn btn-primary">See more</a>
+                @Html.ActionLink("See more", "Burgas", "Home", new { burgas = Model.Burgas, varna = Model.Varna, sofia = Model.Sofia, plovdiv = Model.Sofia, seaside = Model.SeaSide, noseaside = Model.NoSeaSide }, new { @class = "btn btn-primary" })
             </div>
         </div>
     }
 </div>
+
+@section Scripts {
+
+    <script>
+        var myModel = JSON.parse('@Html.Raw(Model.ToString())');
+    </script>
+}
