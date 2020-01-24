@@ -15,7 +15,22 @@ namespace Go6oClient.Api.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Sofia()
+        {
+            return View();
+        }
+
+        public IActionResult Plovdiv()
+        {
+            return View();
+        }
+
+        public IActionResult Varna()
+        {
+            return View();
+        }
+
+        public IActionResult Burgas()
         {
             return View();
         }
