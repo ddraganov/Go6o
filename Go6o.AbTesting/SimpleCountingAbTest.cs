@@ -27,11 +27,7 @@ namespace Go6o.AbTesting
         {
             double aWeight = Math.Min(1.0d, AStartWeight + (_count / _step) * _aToBRatioStep);
 
-            var random = new Random();
-            if (random.NextDouble() < aWeight)
-                return A;
-            else
-                return B;
+            return GetValue(aWeight);
         }
 
         public override void Handle(SimpleCountingAbTestEvent @event)
