@@ -1,16 +1,17 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 
-namespace Go6o.AbTesting
+namespace Go6o.Core.Application.TestEvaluators
 {
-    public abstract class AbTest<TEvent>
-       where TEvent : AbTestEvent
+    public abstract class AbTestEvaluatorBase
     {
         public string TestId { get; }
         protected string A { get; }
         protected string B { get; }
         protected double AStartWeight { get; }
 
-        public AbTest(string testId, string a, string b, double aStartWeight)
+        public AbTestEvaluatorBase(string testId, string a, string b, double aStartWeight)
         {
             TestId = testId;
             A = a;
@@ -18,10 +19,10 @@ namespace Go6o.AbTesting
             AStartWeight = AStartWeight;
         }
 
-        public abstract void Handle(TEvent @event);
-
         public abstract string GetValue();
 
+        public abstract Task Evaluate(object @event, CancellationToken cancellationToken);
+                
         protected string GetValue(double aWeight)
         {
             var random = new Random();

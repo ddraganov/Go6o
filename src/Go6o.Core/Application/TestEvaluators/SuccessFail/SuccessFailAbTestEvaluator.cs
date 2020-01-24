@@ -1,8 +1,10 @@
-﻿using System;
-
-namespace Go6o.AbTesting
+﻿using Go6o.Core.Application.Events.SuccessFail;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+namespace Go6o.Core.Application.TestEvaluators.SuccessFail
 {
-    public class SuccessFailAbTest : AbTest<SuccessFailAbTestEvent>
+    public class SuccessFailAbTestEvaluator : AbTestEvaluatorBase
     {
         private readonly int _hitsCountRequiredForRecalculation;
         private int _successfulA;
@@ -10,7 +12,7 @@ namespace Go6o.AbTesting
         private int _failedA;
         private int _failedB;
 
-        public SuccessFailAbTest(
+        public SuccessFailAbTestEvaluator(
             string testId,
             string a,
             string b,
@@ -19,6 +21,40 @@ namespace Go6o.AbTesting
             : base(testId, a, b, aStartWeight)
         {
             _hitsCountRequiredForRecalculation = hitsCountRequiredForRecalculation;
+        }
+
+        public override Task Evaluate(object @event, CancellationToken cancellationToken)
+        {
+            var successFailtEvent = @event as SuccessFailEvent;
+            if (successFailtEvent == null)
+            {
+                throw new ArgumentException("Invalid type passed.");
+            }
+
+            if (successFailtEvent.Case == Case.A)
+            {
+                if (successFailtEvent.Outcome == BinaryOutcome.Success)
+                {
+                    _successfulA++;
+                }
+                else // on BinaryOutcome.Failure
+                {
+                    _failedA++;
+                }
+            }
+            else // on Case.B
+            {
+                if (successFailtEvent.Outcome == BinaryOutcome.Success)
+                {
+                    _successfulB++;
+                }
+                else // on BinaryOutcome.Failure
+                {
+                    _failedB++;
+                }
+            }
+
+            return Task.CompletedTask;
         }
 
         public override string GetValue()
@@ -45,32 +81,6 @@ namespace Go6o.AbTesting
                 double aWeight = aSuccessRate / (aSuccessRate + bSuccessRate);
 
                 return GetValue(aWeight);
-            }
-        }
-
-        public override void Handle(SuccessFailAbTestEvent @event)
-        {
-            if (@event.Case == Case.A)
-            {
-                if (@event.Outcome == BinaryOutcome.Success)
-                {
-                    _successfulA++;
-                }
-                else // on BinaryOutcome.Failure
-                {
-                    _failedA++;
-                }
-            }
-            else // on Case.B
-            {
-                if (@event.Outcome == BinaryOutcome.Success)
-                {
-                    _successfulB++;
-                }
-                else // on BinaryOutcome.Failure
-                {
-                    _failedB++;
-                }
             }
         }
     }
