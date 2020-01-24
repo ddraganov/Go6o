@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Go6o.AbTesting
 {
-    public class SimpleCountingAbTest : IAbTest<SimpleCountingAbTestEvent>
+    public class SimpleCountingAbTest : AbTest<SimpleCountingAbTestEvent>
     {
         private readonly string _a;
         private readonly string _b;
@@ -29,9 +29,7 @@ namespace Go6o.AbTesting
             _aToBRatioStep = aToBRatioStep;
         }
 
-        public string EventType { get; }
-
-        public string GetValue()
+        public override string GetValue()
         {
             double aWeight = Math.Min(1.0d, _aStartWeight + (_count / _step) * _aToBRatioStep);
 
@@ -42,7 +40,7 @@ namespace Go6o.AbTesting
                 return _b;
         }
 
-        public void Handle(SimpleCountingAbTestEvent @event)
+        public override void Handle(SimpleCountingAbTestEvent @event)
         {
             if (@event.EventType == EventType)
                 _count++;
