@@ -1,4 +1,6 @@
-﻿namespace Go6o.AbTesting
+﻿using System;
+
+namespace Go6o.AbTesting
 {
     public abstract class AbTest<TEvent>
        where TEvent : AbTestEvent
@@ -19,5 +21,14 @@
         public abstract void Handle(TEvent @event);
 
         public abstract string GetValue();
+
+        protected string GetValue(double aWeight)
+        {
+            var random = new Random();
+            if (random.NextDouble() < aWeight)
+                return A;
+            else
+                return B;
+        }
     }
 }
