@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Go6o.AbTesting
+﻿namespace Go6o.AbTesting
 {
     public class SuccessFailAbTest : AbTest<SuccessFailAbTestEvent>
     {
