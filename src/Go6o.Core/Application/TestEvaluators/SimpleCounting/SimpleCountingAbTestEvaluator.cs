@@ -40,10 +40,10 @@ namespace Go6o.Core.Application.TestEvaluators.SimpleCounting
                 throw new ArgumentException("Invalid type passed.");
             }
 
-            if (simpleCountEvent.EventId == TestId)
+            if (simpleCountEvent.TestId == TestId)
                 _count++;
             else
-                throw new ArgumentException($"Event handler for type {TestId} received an event of type {simpleCountEvent.EventId}");
+                throw new ArgumentException($"Event handler for type {TestId} received an event of type {simpleCountEvent.TestId}");
 
             return Task.CompletedTask;
         }

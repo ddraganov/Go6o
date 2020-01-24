@@ -2,6 +2,6 @@
 {
     public abstract class EventBase
     {
-        public string EventId { get; set; }
+        public string TestId { get; set; }
     }
 }

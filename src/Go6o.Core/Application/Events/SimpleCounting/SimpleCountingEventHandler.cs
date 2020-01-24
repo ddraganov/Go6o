@@ -11,7 +11,7 @@ namespace Go6o.Core.Application.Events.SimpleCounting
     {
         public Task Handle(SimpleCountingEvent notification, CancellationToken cancellationToken)
         {
-            var evaluator = ABTestEvaluatorFactory.CreateInstance("simple");
+            var evaluator = ABTestEvaluatorFactory.GetEvaluator("simple");
 
             if(evaluator == null)
             {

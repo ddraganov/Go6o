@@ -1,4 +1,4 @@
-﻿using Go6o.Core.Application.TestEvaluators.SimpleCounting;
+﻿using Go6o.Core.Application.TestEvaluators.SuccessFail;
 using System;
 using System.Collections.Concurrent;
 
@@ -10,10 +10,15 @@ namespace Go6o.Core.Application.TestEvaluators
 
         static ABTestEvaluatorFactory()
         {
-            _dict.TryAdd("simple", new SimpleCountingAbTestEvaluator("simple", "", "", 0.5d, 5, 0.5d));
+            _dict.TryAdd("Burgas", new SuccessFailAbTestEvaluator("Burgas", "A", "B", 0.5d, 10));
+            _dict.TryAdd("NoSeaSide", new SuccessFailAbTestEvaluator("NoSeaSide", "A", "B", 0.5d, 10));
+            _dict.TryAdd("Plovdiv", new SuccessFailAbTestEvaluator("Plovdiv", "A", "B", 0.5d, 10));
+            _dict.TryAdd("SeaSide", new SuccessFailAbTestEvaluator("SeaSide", "A", "B", 0.5d, 10));
+            _dict.TryAdd("Sofia", new SuccessFailAbTestEvaluator("Sofia", "A", "B", 0.5d, 10));
+            _dict.TryAdd("Varna", new SuccessFailAbTestEvaluator("Varna", "A", "B", 0.5d, 10));
         }
 
-        public static AbTestEvaluatorBase CreateInstance(string testId)
+        public static AbTestEvaluatorBase GetEvaluator(string testId)
         {
             if(!_dict.TryGetValue(testId, out AbTestEvaluatorBase evaluator))
             {

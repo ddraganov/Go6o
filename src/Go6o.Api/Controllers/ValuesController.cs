@@ -19,9 +19,7 @@ namespace Go6o.Api.Controllers
         [Route("{testId}")]
         public string Get([FromRoute]string testId)
         {
-            var evaluator = ABTestEvaluatorFactory.CreateInstance(testId);
-
-            return evaluator.GetValue();
+            return "";
         }
     }
 }

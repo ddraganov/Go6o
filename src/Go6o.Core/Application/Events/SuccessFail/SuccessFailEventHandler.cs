@@ -11,7 +11,7 @@ namespace Go6o.Core.Application.Events.SuccessFail
     {
         public Task Handle(SuccessFailEvent notification, CancellationToken cancellationToken)
         {
-            var evaluator = ABTestEvaluatorFactory.CreateInstance("success");
+            var evaluator = ABTestEvaluatorFactory.GetEvaluator("success");
 
             if (evaluator == null)
             {

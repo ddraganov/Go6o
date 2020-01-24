@@ -1,9 +1,12 @@
 using Amazon.SQS;
 using Amazon.SQS.Model;
 using Go6o.Core.Application.Events.SimpleCounting;
+using Go6o.Core.Application.Events.SuccessFail;
+using Go6o.Core.Application.TestEvaluators;
 using MediatR;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Threading;
@@ -16,14 +19,16 @@ namespace Go6o.QueueProcessor
         private readonly ILogger<Worker> _logger;
         private readonly IAmazonSQS _sqs;
         private readonly IMediator _mediator;
-       
+
         private readonly string _eventQueueUrl = "https://sqs.eu-west-1.amazonaws.com/777530757256/abtesting-queue";
+        private readonly string _responseEventQueueUrl = "https://sqs.eu-west-1.amazonaws.com/777530757256/abtesting_response_queue";
 
         public Worker(ILogger<Worker> logger, IAmazonSQS sqs, IMediator mediator)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _sqs = sqs ?? throw new ArgumentNullException(nameof(sqs));
             _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+            ABTestEvaluatorFactory.GetEvaluator("Burgas");
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -46,12 +51,12 @@ namespace Go6o.QueueProcessor
                         foreach (var message in result.Messages)
                         {
                             // Some Processing code would live here
+                            await _mediator.Publish(new SimpleCountingEvent() { TestId = "simple"});
 
-                            await _mediator.Publish(new SimpleCountingEvent() { EventId = "simple"});
-
-                            _logger.LogInformation("Processing Message: {message} | {time}", message.Body, DateTimeOffset.Now);
+                            var value = ABTestEvaluatorFactory.GetEvaluator("simple").GetValue();
 
                             var deleteResult = await _sqs.DeleteMessageAsync(_eventQueueUrl, message.ReceiptHandle);
+                            _logger.LogInformation("Processing Message: {message} | {time}", message.Body, DateTimeOffset.Now);
                         }
                     }
                 }

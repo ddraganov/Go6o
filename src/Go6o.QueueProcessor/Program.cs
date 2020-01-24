@@ -40,6 +40,9 @@ namespace Go6o.QueueProcessor
                     services.AddMediatorHandlers(AssemblyLoad("Go6o.Core"));
 
                     services.AddHostedService<Worker>();
+                })
+                .ConfigureLogging((hostingContext, logging) =>
+                {
                 });
     }
 }
