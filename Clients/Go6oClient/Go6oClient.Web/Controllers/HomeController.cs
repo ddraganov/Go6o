@@ -1,4 +1,5 @@
-﻿using Go6oClient.Web.Models;
+﻿using Go6oClient.Web.ABConnect;
+using Go6oClient.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -6,16 +7,23 @@ namespace Go6oClient.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IABConnector connector;
+
+        public HomeController(IABConnector connector)
+        {
+            this.connector = connector;
+        }
+
         public IActionResult Index()
         {
             var control = new UiControl()
             {
-                Burgas = "A",
-                NoSeaSide = "B",
-                Plovdiv = "B",
-                SeaSide = "A",
-                Sofia = "B",
-                Varna = "A"
+                Burgas = connector.GetValue("Burgas"),
+                NoSeaSide = connector.GetValue("NoSeaSide"),
+                Plovdiv = connector.GetValue("Plovdiv"),
+                SeaSide = connector.GetValue("SeaSide"),
+                Sofia = connector.GetValue("Sofia"),
+                Varna = connector.GetValue("Varna")
             };
 
             return View(control);
