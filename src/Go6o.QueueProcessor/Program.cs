@@ -1,5 +1,6 @@
 using Amazon.SQS;
 using Go6o.QueueProcessor.Extensions;
+using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -35,7 +36,8 @@ namespace Go6o.QueueProcessor
                     services.AddDefaultAWSOptions(awsOptions);
                     services.AddAWSService<IAmazonSQS>();
 
-                    services.AddABTestEventHandlers(AssemblyLoad("Go6o.AbTesting"));
+                    services.AddMediatR(typeof(Program));
+                    services.AddMediatorHandlers(AssemblyLoad("Go6o.Core"));
 
                     services.AddHostedService<Worker>();
                 });

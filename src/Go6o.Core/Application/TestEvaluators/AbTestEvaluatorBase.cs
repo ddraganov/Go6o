@@ -1,14 +1,16 @@
-﻿namespace Go6o.AbTesting
+﻿using System.Threading;
+using System.Threading.Tasks;
+
+namespace Go6o.Core.Application.TestEvaluators
 {
-    public abstract class AbTest<TEvent> : IABTestEventHandler<TEvent>
-       where TEvent : AbTestEvent
+    public abstract class AbTestEvaluatorBase
     {
         public string TestId { get; }
         protected string A { get; }
         protected string B { get; }
         protected double AStartWeight { get; }
 
-        public AbTest(string testId, string a, string b, double aStartWeight)
+        public AbTestEvaluatorBase(string testId, string a, string b, double aStartWeight)
         {
             TestId = testId;
             A = a;
@@ -16,8 +18,8 @@
             AStartWeight = AStartWeight;
         }
 
-        public abstract void Handle(TEvent @event);
-
         public abstract string GetValue();
+
+        public abstract Task Evaluate(object @event, CancellationToken cancellationToken);
     }
 }

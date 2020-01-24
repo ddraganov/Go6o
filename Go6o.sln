@@ -13,8 +13,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Go6o.QueueProcessor", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Go6o.Api", "src\Go6o.Api\Go6o.Api.csproj", "{8241E813-BC57-4F35-98F7-2531CDC3777D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Go6o.AbTesting", "Go6o.AbTesting\Go6o.AbTesting.csproj", "{6AD2B243-7F40-4C18-8C8F-6866B7B7FD76}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,10 +31,6 @@ Global
 		{8241E813-BC57-4F35-98F7-2531CDC3777D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8241E813-BC57-4F35-98F7-2531CDC3777D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8241E813-BC57-4F35-98F7-2531CDC3777D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6AD2B243-7F40-4C18-8C8F-6866B7B7FD76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6AD2B243-7F40-4C18-8C8F-6866B7B7FD76}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6AD2B243-7F40-4C18-8C8F-6866B7B7FD76}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6AD2B243-7F40-4C18-8C8F-6866B7B7FD76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,7 +39,6 @@ Global
 		{8BA39222-0CEC-4791-92DF-7DE9FB0909E4} = {A15043DE-2C09-4B4D-BC7E-F92CD79344BB}
 		{A9E38311-70ED-4815-BA4C-327E103A61A4} = {A15043DE-2C09-4B4D-BC7E-F92CD79344BB}
 		{8241E813-BC57-4F35-98F7-2531CDC3777D} = {A15043DE-2C09-4B4D-BC7E-F92CD79344BB}
-		{6AD2B243-7F40-4C18-8C8F-6866B7B7FD76} = {A15043DE-2C09-4B4D-BC7E-F92CD79344BB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F0015692-AE3F-4FEA-AB3F-61EA2D6CE924}

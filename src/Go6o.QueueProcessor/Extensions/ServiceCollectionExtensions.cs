@@ -1,4 +1,4 @@
-﻿using Go6o.AbTesting;
+﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using System.Reflection;
@@ -7,7 +7,7 @@ namespace Go6o.QueueProcessor.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddABTestEventHandlers(this IServiceCollection services, Assembly assembly)
+        public static IServiceCollection AddMediatorHandlers(this IServiceCollection services, Assembly assembly)
         {
             var classTypes = assembly.ExportedTypes.Select(t => t.GetTypeInfo()).Where(t => t.IsClass && !t.IsAbstract);
 
@@ -15,7 +15,7 @@ namespace Go6o.QueueProcessor.Extensions
             {
                 var interfaces = type.ImplementedInterfaces.Select(i => i.GetTypeInfo());
 
-                foreach (var handlerType in interfaces.Where(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IABTestEventHandler<>)))
+                foreach (var handlerType in interfaces.Where(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(INotificationHandler<>)))
                 {
                     services.AddTransient(handlerType.AsType(), type.AsType());
                 }
