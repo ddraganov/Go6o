@@ -4,6 +4,18 @@ namespace Go6oClient.Web.Models
 {
     public class Report
     {
+        public Report()
+        {
+
+        }
+
+        public Report(string eventId, int currentCase, int outcome)
+        {
+            EventId = eventId;
+            Case = currentCase;
+            Outcome = outcome;
+        }
+
         public string EventId { get; set; }
 
         public int Case { get; set; }
