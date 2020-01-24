@@ -3,14 +3,14 @@ for details on configuring this project to bundle and minify static web assets. 
 
 .custom-card {
     float: left;
-    margin: 20px;
-    border-radius: 5px;
-    width: 30rem;
+    margin: 5%;
+    border-radius: 5px; 
+    width: 40%;
 }
 
     .custom-card img {
         max-height: 280px;
-        overflow: hidden;
+        overflow: no-content;
     }
 
 .custom-carousel .item img {

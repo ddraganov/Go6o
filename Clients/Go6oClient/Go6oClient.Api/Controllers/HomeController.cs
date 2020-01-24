@@ -12,7 +12,17 @@ namespace Go6oClient.Api.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            var control = new UiControl()
+            {
+                Burgas = "A",
+                NoSeaSide = "B",
+                Plovdiv = "B",
+                SeaSide = "A",
+                Sofia = "B",
+                Varna = "A"
+            };
+
+            return View(control);
         }
 
         public IActionResult Sofia()
