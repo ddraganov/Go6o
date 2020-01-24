@@ -20,6 +20,16 @@ namespace Go6o.Core.Application.TestEvaluators
 
         public abstract string GetValue();
 
-        public abstract Task Evaluate(object @event, CancellationToken cancellationToken);
+
+                public abstract Task Evaluate(object @event, CancellationToken cancellationToken);
+                
+        protected string GetValue(double aWeight)
+        {
+            var random = new Random();
+            if (random.NextDouble() < aWeight)
+                return A;
+            else
+                return B;
+        }
     }
 }

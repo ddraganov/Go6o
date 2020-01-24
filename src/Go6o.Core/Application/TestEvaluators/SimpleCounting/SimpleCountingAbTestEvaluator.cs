@@ -29,11 +29,7 @@ namespace Go6o.Core.Application.TestEvaluators.SimpleCounting
         {
             double aWeight = Math.Min(1.0d, AStartWeight + (_count / _step) * _aToBRatioStep);
 
-            var random = new Random();
-            if (random.NextDouble() < aWeight)
-                return A;
-            else
-                return B;
+            return GetValue(aWeight);
         }
 
         public override Task Evaluate(object @event, CancellationToken cancellationToken)
