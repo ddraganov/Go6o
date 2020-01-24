@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Go6o.Core.Application.TestEvaluators
@@ -20,8 +21,7 @@ namespace Go6o.Core.Application.TestEvaluators
 
         public abstract string GetValue();
 
-
-                public abstract Task Evaluate(object @event, CancellationToken cancellationToken);
+        public abstract Task Evaluate(object @event, CancellationToken cancellationToken);
                 
         protected string GetValue(double aWeight)
         {
