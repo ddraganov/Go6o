@@ -1,12 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Amazon.SQS;
+using Go6o.QueueProcessor.Extensions;
+using MediatR;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.IO;
+using System.Reflection;
 
 namespace Go6o.QueueProcessor
 {
@@ -33,6 +32,16 @@ namespace Go6o.QueueProcessor
                     var awsOptions = hostContext.Configuration.GetAWSOptions();
                     services.AddDefaultAWSOptions(awsOptions);
                     services.AddAWSService<IAmazonSQS>();
+
+                    services.AddMediatR(typeof(Program));
+
+                    services.AddMediatorHandlers(Assembly.Load("Go6o.Core"));
+
+                    services.Scan(scan =>
+                        scan.FromAssemblyOf<Program>()
+                            .AddClasses(classes => classes.AssignableTo(typeof(INotificationHandler<>)))
+                            .AsSelf()
+                            .WithSingletonLifetime());
 
                     services.AddHostedService<Worker>();
                 });
