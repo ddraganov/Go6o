@@ -51,9 +51,10 @@ namespace Go6o.QueueProcessor
                         foreach (var message in result.Messages)
                         {
                             // Some Processing code would live here
-                            await _mediator.Publish(new SimpleCountingEvent() { TestId = "simple"});
+                            var @event = JsonConvert.DeserializeObject<SuccessFailEvent>(message.Body);
+                            await _mediator.Publish(@event);
 
-                            var value = ABTestEvaluatorFactory.GetEvaluator("simple").GetValue();
+                            var value = ABTestEvaluatorFactory.GetEvaluator(@event.TestId).GetValue();
 
                             var deleteResult = await _sqs.DeleteMessageAsync(_eventQueueUrl, message.ReceiptHandle);
                             _logger.LogInformation("Processing Message: {message} | {time}", message.Body, DateTimeOffset.Now);
