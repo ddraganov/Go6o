@@ -6,25 +6,19 @@ namespace Go6o.AbTesting
 {
     public class SimpleCountingAbTest : AbTest<SimpleCountingAbTestEvent>
     {
-        private readonly string _a;
-        private readonly string _b;
-        private readonly double _aStartWeight;
         private readonly int _step;
         private readonly double _aToBRatioStep;
         private int _count;
 
         public SimpleCountingAbTest(
-            string eventType, 
+            string testId, 
             string a, 
             string b, 
             double aStartWeight, 
             int countStep,
             double aToBRatioStep)
+            : base (testId, a, b, aStartWeight)
         {
-            EventType = eventType;
-            _a = a;
-            _b = b;
-            _aStartWeight = aStartWeight;
             _step = countStep;
             _aToBRatioStep = aToBRatioStep;
         }
@@ -42,10 +36,10 @@ namespace Go6o.AbTesting
 
         public override void Handle(SimpleCountingAbTestEvent @event)
         {
-            if (@event.EventType == EventType)
+            if (@event.TestId == TestId)
                 _count++;
             else
-                throw new ArgumentException($"Event handler for type {EventType} received an event of type {@event.EventType}");
+                throw new ArgumentException($"Event handler for type {TestId} received an event of type {@event.TestId}");
         }
     }
 }

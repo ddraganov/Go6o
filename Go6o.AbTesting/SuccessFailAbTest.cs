@@ -4,22 +4,16 @@ namespace Go6o.AbTesting
 {
     public class SuccessFailAbTest : AbTest<SuccessFailAbTestEvent>
     {
-        private readonly string _a;
-        private readonly string _b;
-        private readonly double _aStartWeight;
         private readonly int _hitsCountRequiredForRecalculation;
 
         public SuccessFailAbTest(
-            string eventType,
+            string testId,
             string a,
             string b,
             double aStartWeight,
             int hitsCountRequiredForRecalculation)
+            : base(testId, a, b, aStartWeight)
         {
-            EventType = eventType;
-            _a = a;
-            _b = b;
-            _aStartWeight = aStartWeight;
             _hitsCountRequiredForRecalculation = hitsCountRequiredForRecalculation;
         }
 
@@ -30,7 +24,7 @@ namespace Go6o.AbTesting
 
         public override void Handle(SuccessFailAbTestEvent @event)
         {
-            throw new NotImplementedException();
+            //_eventsCount++;
         }
     }
 }

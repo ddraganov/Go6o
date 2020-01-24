@@ -2,6 +2,6 @@
 {
     public abstract class AbTestEvent
     {
-        public string EventType { get; set; }
+        public string TestId { get; set; }
     }
 }
